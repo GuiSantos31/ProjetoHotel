@@ -7,6 +7,15 @@ const HotelSchema = new Schema({
     endereco: String,
     qtdeAptos: Number,
     valorDiaria: Number,
+    nomeImagem: String,
+}, {
+    toJSON: {
+        virtuals: true,
+    }
+
+});
+HotelSchema.virtual('imagem_url').get(function(){
+    return `http://localhost:3000/uploads/${this.nomeImagem}`;
 });
 
-module.exports= model ('hotel',HotelSchema);
+module.exports = model ('hotel',HotelSchema);
